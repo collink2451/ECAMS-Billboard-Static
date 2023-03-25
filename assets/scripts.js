@@ -125,7 +125,6 @@ async function createProfs() {
       outputStr += "<tr>";
       outputStr += `<td>${element.item}</td>`;
       outputStr += `<td>${element.ref}</td>`;
-      //outputStr += `<td><a class="btn btn-outline-light" href="${element.ref}" target="_blank"><i class="fa-solid fa-eye"></i></a></td>`;
       outputStr += "</tr>";
   });
   $("#profs").html(outputStr);
