@@ -1,4 +1,4 @@
-const api_url = "https://ecams-billboard-api.azurewebsites.net";
+const api_url = "https://ecams-billboard--api.azurewebsites.net";
 
 setInterval(function () {
   ping();
