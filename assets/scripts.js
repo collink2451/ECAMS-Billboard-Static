@@ -15,10 +15,21 @@ function ping() {
   });
 }
 
-
 $(window).on("load", function () {
   ping();
 });
+
+async function getData() {
+  const data = await fetch("https://ecams-billboard--api.azurewebsites.net/api/data")
+  .then((res) => res.json())
+  .then((data) => {
+    return data;
+  })
+  console.log(data)
+  return data
+}
+
+getData()
 
 const profs = [
   {
