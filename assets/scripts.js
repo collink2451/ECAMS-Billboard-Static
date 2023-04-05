@@ -20,13 +20,13 @@ $(window).on("load", function () {
 });
 
 async function getData() {
-  const data = await fetch("https://ecams-billboard--api.azurewebsites.net/api/data")
-  .then((res) => res.json())
-  .then((data) => {
-    return data;
-  })
-  console.log(data)
-  return data
+  const data = await fetch(api_url + "/api/data")
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
+  console.log(data);
+  return data;
 }
 
-getData()
+getData();
