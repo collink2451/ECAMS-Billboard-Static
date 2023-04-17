@@ -29,4 +29,16 @@ async function getData() {
   return data;
 }
 
-getData();
+async function loadData() {
+  const data = await getData();
+  outputStr = "";
+  data.forEach((element, index) => {
+      outputStr += "<tr>";
+      outputStr += `<td>${element.name}</td>`;
+      outputStr += `<td>${element.room}</td>`;
+      outputStr += "</tr>";
+  });
+  $("#profs").html(outputStr);
+}
+
+loadData();
