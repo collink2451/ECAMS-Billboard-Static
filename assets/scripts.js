@@ -28,10 +28,10 @@ async function loadData() {
   const data = await getData();
   outputStr = "";
   data.forEach((element, index) => {
-      outputStr += "<tr>";
-      outputStr += `<td>${element.name}</td>`;
-      outputStr += `<td>${element.room}</td>`;
-      outputStr += "</tr>";
+    outputStr += "<tr>";
+    outputStr += `<td>${element.name}</td>`;
+    outputStr += `<td>${element.room}</td>`;
+    outputStr += "</tr>";
   });
   $("#profs").html(outputStr);
 }
@@ -44,30 +44,28 @@ async function getImg() {
     .then((data) => {
       return data;
     });
-  console.log(data);
   return data;
 }
 
-
-async function arrayImg(){
+async function loadImg() {
   const data = await getImg();
-  let array = [];
+  outputStr = "";
   data.forEach((element, index) => {
-    image = new Image();
-    image.src = api_url+"/uploads/"+element.image_name;
-    array.push(image);
-    
-});
-console.log(array);
-
+    const image_url = api_url + "/uploads/" + element.image_name;
+    outputStr += `<div class="carousel-item ${
+      index === 0 ? "active" : ""
+    }" data-bs-interval="5000">
+                    <img
+                      src="${image_url}"
+                      class="d-block w-100 mh-100"
+                      alt="${element.name}"
+                    />
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>${element.name}</h5>
+                    </div>
+                  </div>`;
+  });
+  $(".carousel-inner").html(outputStr);
 }
 
-async function caro(){
-  const data = await arrayImg();
-  for (let i = 0; i < data.length; i++){
-    document.body.appendChild(data[i]);
-  }
-}
-
-caro();
-
+loadImg();
