@@ -67,7 +67,7 @@ async function loadImg() {
                     </div>
                   </div>`;
   });
-  $(".carousel-inner").html(outputStr);
+  $("#carousel-body").html(outputStr);
 }
 
 loadImg();
