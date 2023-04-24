@@ -57,8 +57,10 @@ async function loadImg() {
     }" data-bs-interval="5000">
                     <img
                       src="${image_url}"
-                      class="d-block w-100 mh-100"
+                      class="d-block w-100"
                       alt="${element.name}"
+                      width="375"
+                      height="500"
                     />
                     <div class="carousel-caption d-none d-md-block">
                       <h5>${element.name}</h5>
