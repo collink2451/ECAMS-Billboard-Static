@@ -48,3 +48,26 @@ async function getImg() {
   return data;
 }
 
+
+async function arrayImg(){
+  const data = await getImg();
+  let array = [];
+  data.forEach((element, index) => {
+    image = new Image();
+    image.src = api_url+"/uploads/"+element.image_name;
+    array.push(image);
+    
+});
+console.log(array);
+
+}
+
+async function caro(){
+  const data = await arrayImg();
+  for (let i = 0; i < data.length; i++){
+    document.body.appendChild(data[i]);
+  }
+}
+
+caro();
+
