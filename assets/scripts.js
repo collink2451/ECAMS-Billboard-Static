@@ -37,3 +37,14 @@ async function loadData() {
 }
 
 loadData();
+
+async function getImg() {
+  const data = await fetch(api_url + "/api/banners")
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
+  console.log(data);
+  return data;
+}
+
