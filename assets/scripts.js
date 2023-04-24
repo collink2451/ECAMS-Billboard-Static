@@ -54,7 +54,7 @@ async function loadImg() {
     const image_url = api_url + "/uploads/" + element.image_name;
     outputStr += `<div class="carousel-item ${
       index === 0 ? "active" : ""
-    }" data-bs-interval="5000">
+    }" data-bs-interval="10000">
                     <img
                       src="${image_url}"
                       class="d-block w-100"
