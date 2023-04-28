@@ -10,6 +10,11 @@ setInterval(function () {
   window.location.reload();
 }, 3600000);
 
+setInterval(function () {
+  // Refresh data every 10 minutes
+  loadImg();
+}, 600000);
+
 async function ping() {
   await fetch(api_url + "/ping", { mode: "no-cors" });
   await fetch(acp_url + "/ping", { mode: "no-cors" });
