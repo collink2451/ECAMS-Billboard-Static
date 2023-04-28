@@ -54,19 +54,16 @@
   height: 48px;
 }
 
-.table {
-    background-color: var(--darkRed);    
-}
-
 .table th {
-    color: var(--white);
+  color: var(--white);
+  background-color: var(--darkRed);
 }
 
 .table td {
-    background-color: var(--lightGrayBackground);
-    color: var(--black);
+  background-color: var(--lightGrayBackground);
+  color: var(--black);
 }
 
 .table td:hover {
-    background-color: var(--hoverGray);
+  background-color: var(--hoverGray);
 }
