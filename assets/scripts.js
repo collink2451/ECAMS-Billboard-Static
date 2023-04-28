@@ -5,6 +5,11 @@ setInterval(function () {
   ping();
 }, 120000);
 
+setInterval(function () {
+  // Reload every 6 hours
+  window.location.reload();
+}, 21600000);
+
 async function ping() {
   await fetch(api_url + "/ping", { mode: "no-cors" });
   await fetch(acp_url + "/ping", { mode: "no-cors" });
