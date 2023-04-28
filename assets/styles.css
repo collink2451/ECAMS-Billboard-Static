@@ -30,52 +30,40 @@
     --weightExtraBold: 800;
 }
 
-* {
-    font-family: var(--AdobeGaramond);
-    color: var(--white);
+.carousel-caption {
+  position: relative;
+  left: auto;
+  right: auto;
+  color: black;
 }
 
-.table {
-    background-color: var(--darkRed);    
+.carousel-item > img {
+  height: 75vh;
+  width: 100%;
+  object-fit: contain;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23c22033' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+  width: 30px;
+  height: 48px;
+}
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23c22033' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+  width: 30px;
+  height: 48px;
 }
 
 .table th {
-    color: var(--white);
+  color: var(--white);
+  background-color: var(--darkRed);
 }
 
 .table td {
-    background-color: var(--lightGrayBackground);
-    color: var(--black);
+  background-color: var(--lightGrayBackground);
+  color: var(--black);
 }
 
 .table td:hover {
-    background-color: var(--hoverGray);
-}
-
-#banner {
-    width:100%;
-    height:60px;
-    background-color: var(--darkRed);
-    position:fixed;
-    z-index: 1;
-    /*shading*/
-    box-shadow: 1px 1px 8px 1px var(--black);
-}
-
-#logo {
-    width:7%;
-}
-
-#background-image {
-    height:15.7%;
-    right: 0%;
-    left: 0%;
-    position: absolute;
-    top:7.2%;
-    z-index: -1;
-}
-
-#absolute-text {
-    position: relative;
-    z-index: 0;
+  background-color: var(--hoverGray);
 }
