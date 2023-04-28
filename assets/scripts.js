@@ -12,6 +12,7 @@ setInterval(function () {
 
 setInterval(function () {
   // Refresh data every 10 minutes
+  loadData();
   loadImg();
 }, 600000);
 
