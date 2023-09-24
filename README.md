@@ -11,3 +11,6 @@ Katherine Groppe: katherinergroppe@lewisu.edu
 Justina Piwoni: justinajpiwoni@lewisu.edu
 
 Ryan Leiteritz: ryanpleiteritz@lewisu.edu
+
+## MVP:
+https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP
