@@ -13,7 +13,7 @@ Justina Piwoni: justinajpiwoni@lewisu.edu
 Ryan Leiteritz: ryanpleiteritz@lewisu.edu
 
 ## MVP:
-https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP
+https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP.md
 
 ## CI/CD:
 https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/CI_CD.md
