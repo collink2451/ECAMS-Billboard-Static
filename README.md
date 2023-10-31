@@ -18,6 +18,8 @@ David Abrutis: davidaabrutis@lewisu.edu
 
 Fernando Alfaro: fernandogalfaro@lewisu.edu
 
+Pablo Enriquez: pablorenriquez@lewisu.edu
+
 ## MVP:
 https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP.md
 
