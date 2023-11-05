@@ -38,15 +38,49 @@
         </div>
       </div>
       <div class="col-4">
-        <table class="table table-sm table-light table-hover">
+        <table id="professorTable" class="table table-sm table-light table-hover">
           <thead>
             <tr>
               <th scope="col">Faculty</th>
               <th scope="col">Office Room Number</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody id="profs"></tbody>
         </table>
+      </div>
+    </div>
+    <div class="modal modal-xl" id="professorModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="professorName">Name</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-start">
+            <table class="table table-light table-hover">
+              <tr>
+                <th>Name</th>
+                <td id="professorNameTable">Name</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td id="professorEmail">Email</td>
+              </tr>
+              <tr>
+                <th>Office Hours</th>
+                <td id="professorHours">Office Hours</td>
+              </tr>
+              <tr>
+                <th>Office</th>
+                <td id="professorOffice">Office Room Number</td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

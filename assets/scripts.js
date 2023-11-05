@@ -1,6 +1,8 @@
 const api_url = "https://ecams-billboard--api.azurewebsites.net";
 const acp_url = "https://ecams-billboard-acp.azurewebsites.net";
 
+let data = [];
+
 setInterval(function () {
   ping();
 }, 120000);
@@ -26,22 +28,23 @@ $(window).on("load", function () {
 });
 
 async function getData() {
-  const data = await fetch(api_url + "/api/data")
+  await fetch(api_url + "/api/data")
     .then((res) => res.json())
-    .then((data) => {
-      return data;
+    .then((localData) => {
+      data = localData;
+      return;
     });
   console.log(data);
-  return data;
 }
 
 async function loadData() {
-  const data = await getData();
+  await getData();
   outputStr = "";
   data.forEach((element, index) => {
     outputStr += "<tr>";
     outputStr += `<td>${element.name}</td>`;
     outputStr += `<td>${element.room}</td>`;
+    outputStr += `<td><button class="btn btn-outline-primary btn-sm" id="view-professor" onclick="openProfessorModal('${element.id}')"><i class="fa-solid fa-eye"></i></button></td>`;
     outputStr += "</tr>";
   });
   $("#profs").html(outputStr);
@@ -50,18 +53,18 @@ async function loadData() {
 loadData();
 
 async function getImg() {
-  const data = await fetch(api_url + "/api/banners")
+  const imageData = await fetch(api_url + "/api/banners")
     .then((res) => res.json())
-    .then((data) => {
-      return data;
+    .then((imageData) => {
+      return imageData;
     });
-  return data;
+  return imageData;
 }
 
 async function loadImg() {
-  const data = await getImg();
+  const imageData = await getImg();
   outputStr = "";
-  data.forEach((element, index) => {
+  imageData.forEach((element, index) => {
     const image_url = api_url + "/uploads/" + element.image_name;
     outputStr += `<div class="carousel-item ${
       index === 0 ? "active" : ""
@@ -79,6 +82,17 @@ async function loadImg() {
                   </div>`;
   });
   $("#carousel-body").html(outputStr);
+}
+
+function openProfessorModal(professorId) {
+  const professor = data.find((element) => element.id === professorId)
+  
+  $("#professorName").html(professor.name);
+  $("#professorNameTable").html(professor.name);
+  $("#professorEmail").html(professor.email);
+  $("#professorHours").html(professor.hours);
+  $("#professorOffice").html(professor.room);
+  $("#professorModal").modal("show")
 }
 
 loadImg();
