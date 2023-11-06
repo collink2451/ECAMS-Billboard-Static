@@ -58,6 +58,8 @@
 #professorTable th {
   color: var(--white);
   background-color: var(--darkRed);
+  position: sticky;
+  top: 0px;
 }
 
 #professorTable td {
