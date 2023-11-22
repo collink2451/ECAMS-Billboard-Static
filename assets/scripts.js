@@ -1,5 +1,6 @@
 const api_url = "https://ecams-billboard--api.azurewebsites.net";
 const acp_url = "https://ecams-billboard-acp.azurewebsites.net";
+const department = "ECAMS";
 
 let data = [];
 
@@ -28,7 +29,7 @@ $(window).on("load", function () {
 });
 
 async function getData() {
-  await fetch(api_url + "/api/data")
+  await fetch(api_url + "/api/data/" + department)
     .then((res) => res.json())
     .then((localData) => {
       data = localData;
