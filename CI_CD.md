@@ -1,4 +1,3 @@
 Our current CI/CD is the following:
-Utilizing Github Repositories for management of our code. 
-Utilizing Google Docs to manage our Sprint and Product Backlogs
-Utilizing Microsoft Azure to manage our websites.
+To complete the few remaining tasks that we have concerning the project and to make sure that the upcoming SCRUM team 
+has the necessary tools to continue working on this project. 
