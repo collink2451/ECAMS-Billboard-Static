@@ -28,3 +28,7 @@ https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/CI_CD.
 
 ### Definition of Done:
 Must be deployed to production and must be demo-able, legible, and presentable. The code should be cleaned of all extraneous unused code, and have good commenting. A test case with each story for anyone (even a dev) and can be done after that.
+
+## TEAM AND PROCESS:
+https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/TEAM.md
+https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/PROCESS.md
