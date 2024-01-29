@@ -22,6 +22,8 @@ Pablo Enriquez: pablorenriquez@lewisu.edu
 
 Shane Frantz: shanesfrantz@lewisu.edu
 
+Jacob Prince: jacobmprince@lewisu.edu
+
 ## MVP:
 https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP.md
 
