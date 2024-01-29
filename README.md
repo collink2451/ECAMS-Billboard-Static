@@ -20,6 +20,8 @@ Fernando Alfaro: fernandogalfaro@lewisu.edu
 
 Pablo Enriquez: pablorenriquez@lewisu.edu
 
+Shane Frantz: shanesfrantz@lewisu.edu
+
 ## MVP:
 https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/blob/master/MVP.md
 
