@@ -3,13 +3,15 @@ const acp_url = "https://ecams-billboard-acp.azurewebsites.net";
 const department = "ECAMS";
 
 let data = [];
+let overlayVisible = false;
+let resetOverlayInterval;
 
 setInterval(function () {
   ping();
 }, 120000);
 
 setInterval(function () {
-  // Reload every 1 hours
+  // Reload every 1 hour
   window.location.reload();
 }, 3600000);
 
@@ -18,6 +20,26 @@ setInterval(function () {
   loadData();
   loadImg();
 }, 600000);
+
+function toggleOverlay(visible) {
+  const overlay = document.getElementById('overlay');
+  overlay.style.display = visible ? 'flex' : 'none';
+  overlayVisible = visible;
+}
+
+function resetOverlay() {
+  toggleOverlay(true);
+}
+
+// Set an interval to reset the overlay every 5 seconds
+resetOverlayInterval = setInterval(resetOverlay, 5000);
+
+// Add the resetOverlay function to the window click event
+window.onclick = function () {
+  clearInterval(resetOverlayInterval); // Clear the interval on click
+  toggleOverlay(false);
+  resetOverlayInterval = setInterval(resetOverlay, 5000); // Set the interval again
+};
 
 async function ping() {
   await fetch(api_url + "/ping", { mode: "no-cors" });
@@ -87,7 +109,7 @@ async function loadImg() {
 
 function openProfessorModal(professorId) {
   const professor = data.find((element) => element.id === professorId)
-  
+
   $("#professorName").html(professor.name);
   $("#professorNameTable").html(professor.name);
   $("#professorEmail").html(professor.email);
