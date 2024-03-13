@@ -1,6 +1,10 @@
 # ECAMS Billboard
 This repository can be used to create a simple Azure hosted static website.
 
+# Installs for DEVS
+
+Make sure Node.js, Express.js, MongoDB, mongoose, and dotenv are installed!
+
 
 ### Credit:
 
