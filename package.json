@@ -1,0 +1,23 @@
+{
+  "name": "ecams-billboard-static",
+  "version": "1.0.0",
+  "description": "This repository can be used to create a simple Azure hosted static website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static/issues"
+  },
+  "homepage": "https://github.com/Scrumdiddliumptious/ECAMS-Billboard-Static#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
