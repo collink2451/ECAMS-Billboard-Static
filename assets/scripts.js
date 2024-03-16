@@ -119,3 +119,48 @@ function openProfessorModal(professorId) {
 }
 
 loadImg();
+
+// Logic for adding metrics to MongoDB
+//--------------------------------------------------------
+
+let locationName = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('locationForm').onsubmit = function(e) {
+    e.preventDefault();
+    locationName = document.getElementById('locationInput').value;
+    document.getElementById('locationOverlay').style.display = 'none';
+    document.getElementById('overlay').style.display = 'block';
+    
+    // Add event listener for the touchImage button
+    document.getElementById('touchImage').addEventListener('click', sendData);
+  };
+});
+
+function sendData() {
+  console.log("sendData() called");
+  const timestamp = new Date().toISOString();
+  fetch('/submit-interaction', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ location: locationName, timestamp }),
+  })
+  .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data sent successfully:', response.statusText);
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
+}
+
+
+// Assuming touchImage is the button that should be monitored
+document.getElementById('touchImage').addEventListener('click', sendData);

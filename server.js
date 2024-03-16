@@ -5,6 +5,15 @@ console.log('DB_URL: ', process.env.DB_URL);
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Define a schema for your data.
+const MetricsSchema = new Schema({
+  location: String,
+  timestamp: String,
+});
+
+const Metrics = mongoose.model('Metrics', MetricsSchema);
 
 const app = express();
 const port = 3000;
@@ -12,46 +21,30 @@ const uri = process.env.DB_URL;
 
 app.use(express.static(__dirname));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-let db;
+app.use(express.json());
 
 // Connects to MongoDB
-async function connect() {
-  try {
-      await mongoose.connect(uri);
-      console.log("Connected to MongoDB");
-      // Start the server
-    app.listen(port, () => {
-      console.log(`Server started on port ${port}`);
-    });
-  } catch (error) {
-      console.error(error);
-  }
-}
-
-connect();
+mongoose.connect(uri, { dbName: 'Capstone' }).then(() => {
+  console.log("Connected to MongoDB");
+  app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });
+}).catch(error => {
+  console.error('Connection error:', error);
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Moved inside the MongoDB connect callback to ensure db is defined
-app.get('/add-data', (req, res) => {
-  if (!db) {
-    return res.status(500).send('Database not initialized');
+app.post('/submit-interaction', async (req, res) => {
+  try {
+    const newMetric = new Metrics(req.body);
+    const result = await newMetric.save();
+    console.log('Metric Added', result);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Error saving the interaction:', error);
+    res.status(500).send('Error saving the interaction to the database');
   }
-
-  const collection = db.collection('Metrics');
-  const document = { name: "New Entry", value: "This is a value" };
-
-  collection.insertOne(document, (err, result) => {
-    if (err) {
-      console.error('Error inserting data', err);
-      return res.status(500).send('Error inserting data');
-    }
-    res.send('Data added successfully');
-  });
 });
-
-
-
