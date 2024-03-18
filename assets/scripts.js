@@ -36,7 +36,7 @@ function resetOverlay() {
 window.onclick = function () {
   clearInterval(resetOverlayInterval); // Clear the interval on click
   toggleOverlay(false);
-  resetOverlayInterval = setInterval(resetOverlay, 5000); // Set the interval again
+  resetOverlayInterval = setInterval(resetOverlay, 180000); // Set the interval again
 };
 
 async function ping() {
