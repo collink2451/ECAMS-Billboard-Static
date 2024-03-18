@@ -5,6 +5,7 @@ const department = "ECAMS";
 let data = [];
 let overlayVisible = false;
 let resetOverlayInterval;
+let locationSet = false;
 
 setInterval(function () {
   ping();
@@ -30,9 +31,6 @@ function toggleOverlay(visible) {
 function resetOverlay() {
   toggleOverlay(true);
 }
-
-// Set an interval to reset the overlay every 5 seconds
-resetOverlayInterval = setInterval(resetOverlay, 5000);
 
 // Add the resetOverlay function to the window click event
 window.onclick = function () {
@@ -129,11 +127,11 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('locationForm').onsubmit = function(e) {
     e.preventDefault();
     locationName = document.getElementById('locationInput').value;
+    locationSet = true;
     document.getElementById('locationOverlay').style.display = 'none';
     document.getElementById('overlay').style.display = 'block';
-    
-    // Add event listener for the touchImage button
-    document.getElementById('touchImage').addEventListener('click', sendData);
+    // Set an interval to reset the overlay every 5 seconds
+    resetOverlayInterval = setInterval(resetOverlay, 5000);
   };
 });
 
