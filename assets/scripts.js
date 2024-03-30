@@ -6,6 +6,7 @@ let data = [];
 let overlayVisible = false;
 let resetOverlayInterval;
 let locationSet = false;
+let skipButtonPressed = false;
 
 setInterval(function () {
   ping();
@@ -124,16 +125,30 @@ loadImg();
 let locationName = '';
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('locationForm').onsubmit = function(e) {
+  const locationForm = document.getElementById('locationForm');
+  locationForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    locationName = document.getElementById('locationInput').value;
-    locationSet = true;
+    submitForm();
+  });
+});
+
+function submitForm() {
+  if (skipButtonPressed) {
+    locationSet = false;
     document.getElementById('locationOverlay').style.display = 'none';
     document.getElementById('overlay').style.display = 'block';
-    // Set an interval to reset the overlay every 5 seconds
+    document.getElementById('touchImage').style.display = 'block';
     resetOverlayInterval = setInterval(resetOverlay, 5000);
-  };
-});
+  } else {
+  locationName = document.getElementById('locationInput').value;
+  locationSet = true;
+  document.getElementById('locationOverlay').style.display = 'none';
+  document.getElementById('overlay').style.display = 'block';
+  // Assuming resetOverlay is a defined function
+  // Set an interval to reset the overlay every 5 seconds
+  resetOverlayInterval = setInterval(resetOverlay, 5000);
+  }
+}
 
 function sendData() {
   console.log("sendData() called");
@@ -159,6 +174,17 @@ function sendData() {
   });
 }
 
-
 // Assuming touchImage is the button that should be monitored
 document.getElementById('touchImage').addEventListener('click', sendData);
+
+document.getElementById('skipButton').addEventListener('click', function() {
+  var confirmResponse = confirm('Are you sure you want to skip metric logging?');
+  if (confirmResponse) {
+    skipButtonPressed = true;
+    console.log('Metric logging skipped.');
+    document.getElementById('locationForm').removeAttribute("required");
+    submitForm();
+  }
+});
+
+//TODO FIX SKIP BUTTON BUG WHERE TOUCH IMAGE DOESNT SHOW UP

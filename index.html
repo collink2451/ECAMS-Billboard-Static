@@ -14,10 +14,11 @@
 <!--Body of HTML-->
 
 <body>
-  <div id="locationOverlay" style="display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:100;">
+  <div id="locationOverlay" style="display:flex; align-items:center; justify-content:center; position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:100; font-size: 3em;">
     <form id="locationForm">
         <input type="text" id="locationInput" placeholder="Enter kiosk location" required>
         <button type="submit">Submit</button>
+        <button id="skipButton" type="submit">Skip Metric Logging</button>
     </form>
   </div>
   <div class="overlay" id="overlay" style="display: none;">
