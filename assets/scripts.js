@@ -137,41 +137,40 @@ function submitForm() {
     locationSet = false;
     document.getElementById('locationOverlay').style.display = 'none';
     document.getElementById('overlay').style.display = 'block';
-    document.getElementById('touchImage').style.display = 'block';
     resetOverlayInterval = setInterval(resetOverlay, 5000);
   } else {
-  locationName = document.getElementById('locationInput').value;
-  locationSet = true;
-  document.getElementById('locationOverlay').style.display = 'none';
-  document.getElementById('overlay').style.display = 'block';
-  // Assuming resetOverlay is a defined function
-  // Set an interval to reset the overlay every 5 seconds
-  resetOverlayInterval = setInterval(resetOverlay, 5000);
+    locationName = document.getElementById('locationInput').value;
+    locationSet = true;
+    document.getElementById('locationOverlay').style.display = 'none';
+    document.getElementById('overlay').style.display = 'block';
+    resetOverlayInterval = setInterval(resetOverlay, 5000);
   }
 }
 
 function sendData() {
-  console.log("sendData() called");
-  const timestamp = new Date().toISOString();
-  fetch('/submit-interaction', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ location: locationName, timestamp }),
-  })
-  .then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok: ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Data sent successfully:', response.statusText);
-  })
-  .catch(error => {
-    console.error('There has been a problem with your fetch operation:', error);
-  });
+  if (locationName !== '') {
+    console.log("sendData() called");
+    const timestamp = new Date().toISOString();
+    fetch('/submit-interaction', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ location: locationName, timestamp }),
+    })
+    .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data sent successfully:', response.statusText);
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+  }
 }
 
 // Assuming touchImage is the button that should be monitored
@@ -182,9 +181,7 @@ document.getElementById('skipButton').addEventListener('click', function() {
   if (confirmResponse) {
     skipButtonPressed = true;
     console.log('Metric logging skipped.');
-    document.getElementById('locationForm').removeAttribute("required");
+    document.getElementById('locationInput').removeAttribute("required");
     submitForm();
   }
 });
-
-//TODO FIX SKIP BUTTON BUG WHERE TOUCH IMAGE DOESNT SHOW UP
