@@ -8,6 +8,10 @@ let resetOverlayInterval;
 let locationSet = false;
 let skipButtonPressed = false;
 
+// Variables for collection metrics
+let locationName = '';
+let clickCount = 0;
+
 setInterval(function () {
   ping();
 }, 120000);
@@ -31,12 +35,20 @@ function toggleOverlay(visible) {
 
 function resetOverlay() {
   toggleOverlay(true);
+  if (locationName !== '' && clickCount > 0) {
+    console.log('clickCount before send:', clickCount);
+    console.log("sendData() called");
+    sendData();
+    clickCount = 0;
+  }
 }
 
 // Add the resetOverlay function to the window click event
 window.onclick = function () {
   clearInterval(resetOverlayInterval); // Clear the interval on click
   toggleOverlay(false);
+  clickCount++;
+  console.log("Clicks: ", clickCount);
   resetOverlayInterval = setInterval(resetOverlay, 180000); // Set the interval again
 };
 
@@ -122,12 +134,13 @@ loadImg();
 // Logic for adding metrics to MongoDB
 //--------------------------------------------------------
 
-let locationName = '';
-
 document.addEventListener('DOMContentLoaded', function() {
   const locationForm = document.getElementById('locationForm');
   locationForm.addEventListener('submit', function(e) {
     e.preventDefault();
+    console.log("Setting clicks to 0");
+    clickCount = 0;
+    //console.log("Clicks: " + clickCount);
     submitForm();
   });
 });
@@ -148,33 +161,29 @@ function submitForm() {
 }
 
 function sendData() {
-  if (locationName !== '') {
-    console.log("sendData() called");
-    const timestamp = new Date().toISOString();
-    fetch('/submit-interaction', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ location: locationName, timestamp }),
-    })
-    .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Data sent successfully:', response.statusText);
-    })
-    .catch(error => {
-      console.error('There has been a problem with your fetch operation:', error);
-    });
-  }
+  const timestamp = new Date().toISOString();
+  fetch('/submit-interaction', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ location: locationName, clicks: clickCount.toString(), timestamp }), // converting clickCount to string if necessary
+  })
+  .then(response => {
+    console.log('Content-Type:', response.headers.get('Content-Type')); // Should be 'application/json'
+    console.log(response); // This will show the full response object
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data sent successfully:', data);
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
 }
 
 // Assuming touchImage is the button that should be monitored
-document.getElementById('touchImage').addEventListener('click', sendData);
+//document.getElementById('touchImage').addEventListener('click', sendData);
 
 document.getElementById('skipButton').addEventListener('click', function() {
   var confirmResponse = confirm('Are you sure you want to skip metric logging?');

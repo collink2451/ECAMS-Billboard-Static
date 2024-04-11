@@ -10,6 +10,7 @@ const Schema = mongoose.Schema;
 // Define a schema for your data.
 const MetricsSchema = new Schema({
   location: String,
+  clicks: String,
   timestamp: String,
 });
 
@@ -37,14 +38,18 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// app.post('/submit-interaction', (req, res) => {
+//   res.json({ message: 'This is a static JSON response.' });
+// });
+
 app.post('/submit-interaction', async (req, res) => {
   try {
     const newMetric = new Metrics(req.body);
     const result = await newMetric.save();
     console.log('Metric Added', result);
-    res.sendStatus(200);
+    res.json({ message: 'Data received successfully', data: result }); // Send a JSON response
   } catch (error) {
     console.error('Error saving the interaction:', error);
-    res.status(500).send('Error saving the interaction to the database');
+    res.status(500).json({ error: 'Error saving the interaction to the database' }); // Send a JSON error message
   }
 });
