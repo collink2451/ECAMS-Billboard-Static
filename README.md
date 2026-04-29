@@ -1,4 +1,4 @@
-# ECAMS Billboard Static
+# ECAMS Billboard Client
 
 The public-facing display frontend for the ECAMS (Engineering, Computing and Mathematical Sciences) department billboard. A static HTML/CSS/JS site intended to be shown on a department display screen.
 
@@ -12,7 +12,7 @@ The public-facing display frontend for the ECAMS (Engineering, Computing and Mat
 - Vanilla HTML, CSS, JavaScript
 - Bootstrap 5
 - jQuery
-- Data fetched at runtime from [ECAMS-Billboard-API](../ECAMS-Billboard-API)
+- Data fetched at runtime from [ecams-billboard-api](../ecams-billboard-api)
 
 ## Setup
 
@@ -26,7 +26,7 @@ python -m http.server 8080
 
 ### Configuring the API URL
 
-The API base URL is set in `assets/scripts.js`. Update it to point to your [ECAMS-Billboard-API](../ECAMS-Billboard-API) instance before deploying.
+The API base URL is set in `assets/scripts.js`. Update it to point to your [ecams-billboard-api](../ecams-billboard-api) instance before deploying.
 
 ## Deployment
 
