@@ -7,8 +7,6 @@ The public-facing display frontend for the ECAMS (Engineering, Computing and Mat
 - **Banner carousel** — auto-rotating slideshow of department banners fetched from the API
 - **Professor directory** — scrollable table of faculty with office numbers
 - **Professor detail modal** — click any professor to see name, email, office hours, and office location
-- Hosted on **Azure Static Web Apps**
-
 ## Tech Stack
 
 - Vanilla HTML, CSS, JavaScript
@@ -32,8 +30,4 @@ The API base URL is set in `assets/scripts.js`. Update it to point to your [ECAM
 
 ## Deployment
 
-Deploy to **Azure Static Web Apps** using the included `staticwebapp.config.json`. Connect your GitHub repository in the Azure portal and it will build and deploy automatically on push.
-
-## CI/CD
-
-See [CI_CD.md](CI_CD.md) for the full deployment pipeline documentation.
+Build the production bundle and serve the output directory with any static hosting provider or web server.
